@@ -136,6 +136,8 @@ export const makeSocket = ({
 				},
 			)
 			return result as any
+		} catch (e) {
+			end(new Boom(e))
 		} finally {
 			ws.off(`TAG:${msgId}`, onRecv)
 			ws.off('close', onErr) // if the socket closes, you'll never receive the message
